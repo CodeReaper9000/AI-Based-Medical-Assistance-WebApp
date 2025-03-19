@@ -1,0 +1,6 @@
+pip install flask pandas numpy nltk requests beautifulsoup4 googlesearch-python
+python -c "import nltk; nltk.download('wordnet'); nltk.download('stopwords')"
+
+pip install flask requests os json
+
+pip install tensorflow pillow
