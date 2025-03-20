@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords, wordnet
-from googlesearch import search
+#from googlesearch import search
 import re
 from itertools import combinations
 from collections import Counter
@@ -186,7 +186,7 @@ def synonyms(term):
         synonyms += syn.lemma_names()
     return set(synonyms)
 
-def diseaseDetail(term):
+'''def diseaseDetail(term):
     ret = {"disease": term, "details": {}}
     try:
         query = f"{term} site:wikipedia.org"
@@ -208,6 +208,7 @@ def diseaseDetail(term):
         return ret
     except Exception as e:
         return {"error": f"Failed to fetch details: {str(e)}"}
+'''
 
 # Routes
 @app.route('/')
@@ -343,7 +344,7 @@ def predict_disease():
     result = [{"disease": diseases[idx], "probability": round(prediction[0][idx] * 120, 1)} for idx in top5]
     return jsonify({"predictions": result})
 
-@app.route('/disease_details', methods=['POST'])
+'''@app.route('/disease_details', methods=['POST'])
 def disease_details():
     disease = request.form.get('disease', '')
     if not disease:
@@ -354,6 +355,7 @@ def disease_details():
         print(f"Error fetching details: {details}")
         return jsonify({"error": "Failed to retrieve disease details"}), 500
     return jsonify({"disease": disease, "details": details["details"]})
+'''
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
